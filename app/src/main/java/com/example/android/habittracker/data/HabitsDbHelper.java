@@ -5,10 +5,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import com.example.android.habittracker.data.HabitsContract.HabitsEntry;
 
 public class HabitsDbHelper extends SQLiteOpenHelper {
+
+    private static final String LOG_TAG = HabitsDbHelper.class.getSimpleName();
 
     //name of database file
     private static final String DATABASE_NAME = "habit.db";
@@ -31,6 +34,8 @@ public class HabitsDbHelper extends SQLiteOpenHelper {
                 + HabitsEntry.COLUMN_HABIT_GOAL + " TEXT NOT NULL, "
                 + HabitsEntry.COLUMN_HABIT_GOAL_ACHIEVED + " INTEGER NOT NULL DEFAULT 0, "
                 + HabitsEntry.COLUMN_HABIT_SATISFACTION_LEVEL + " INTEGER NOT NULL DEFAULT 0);";
+
+        Log.i(LOG_TAG, SQL_CREATE_HABITS_TABLE);
 
         db.execSQL(SQL_CREATE_HABITS_TABLE);
     }
